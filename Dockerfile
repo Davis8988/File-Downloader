@@ -7,11 +7,13 @@ ENV PYTHONUNBUFFERED=1
 # Create a directory for the script
 WORKDIR /usr/src/app
 
-# Copy the current directory contents into the container at /usr/src/app
-COPY . .
+COPY requirements.txt .
 
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
+
+# Copy the current directory contents into the container at /usr/src/app
+COPY . .
 
 # Run the script
 CMD [ "python", "./script.py" ]
