@@ -41,6 +41,19 @@ def print_dest_dir_contents():
             logging.info(os.path.join(root, file))
     logging.info("")
 
+
+def print_dest_file_content(filename):
+    # Print content of specified file in destination directory
+    file_path = os.path.join(DEST_DOWNLOAD_DIR, filename)
+    logging.info(f"Content of file {filename}:")
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as f:
+            for line in f:
+                logging.info(line.strip())
+    else:
+        logging.warning(f"File {filename} does not exist in the destination directory.")
+
+
 if __name__ == "__main__":
     # Ensure the destination directory exists
     if not os.path.exists(DEST_DOWNLOAD_DIR):
@@ -60,6 +73,7 @@ if __name__ == "__main__":
         logging.info("Downloading file from URL: %s", SRC_FILE_TO_DOWNLOAD_URL)
         download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR, "file.txt"))
         
+        print_dest_file_content("file.txt")  # Print content of file "file.txt" before next attempt
         logging.info("Attempt %d: Waiting for %d seconds before next download attempt...", attempt_count, SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
         time.sleep(SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
 
