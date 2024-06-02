@@ -24,6 +24,14 @@ def download_file(url, local_path):
         logging.info("Download complete.")
 
 
+def print_vars():
+    # Print defined variables
+    logging.info("Configuration Variables:")
+    logging.info(f"  SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS : {SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS}")
+    logging.info(f"  SRC_FILE_TO_DOWNLOAD_URL             : {SRC_FILE_TO_DOWNLOAD_URL}")
+    logging.info(f"  DEST_DOWNLOAD_DIR                    : {DEST_DOWNLOAD_DIR}")
+    logging.info(f"  LOG_LEVEL                            : {LOG_LEVEL}")
+
 
 if __name__ == "__main__":
     # Ensure the destination directory exists
@@ -31,7 +39,7 @@ if __name__ == "__main__":
         os.makedirs(DEST_DOWNLOAD_DIR)
 
     logging.info("Starting download script...")
-
+    print_vars()
     attempt_count = 1
 
     while True:
