@@ -35,10 +35,11 @@ def print_vars():
 
 def print_dest_dir_contents():
     # Print contents of destination directory
-    logging.info("Contents of destination directory:")
+    logging.info(f"Contents of destination directory: {DEST_DOWNLOAD_DIR}")
     for root, dirs, files in os.walk(DEST_DOWNLOAD_DIR):
         for file in files:
             logging.info(os.path.join(root, file))
+    logging.info("")
 
 if __name__ == "__main__":
     # Ensure the destination directory exists
