@@ -26,11 +26,13 @@ def download_file(url, local_path):
 
 def print_vars():
     # Print defined variables
+    logging.info("")
     logging.info("Configuration Variables:")
     logging.info(f"  SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS : {SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS}")
     logging.info(f"  SRC_FILE_TO_DOWNLOAD_URL             : {SRC_FILE_TO_DOWNLOAD_URL}")
     logging.info(f"  DEST_DOWNLOAD_DIR                    : {DEST_DOWNLOAD_DIR}")
     logging.info(f"  LOG_LEVEL                            : {LOG_LEVEL}")
+    logging.info("")
 
 
 if __name__ == "__main__":
@@ -40,6 +42,7 @@ if __name__ == "__main__":
 
     logging.info("Starting download script...")
     print_vars()
+
     attempt_count = 1
 
     while True:
