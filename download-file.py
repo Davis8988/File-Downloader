@@ -23,7 +23,6 @@ def download_file(url, local_path):
             f.write(response.content)
         logging.info("Download complete.")
 
-
 def print_vars():
     # Print defined variables
     logging.info("")
@@ -34,6 +33,12 @@ def print_vars():
     logging.info(f"  LOG_LEVEL                            : {LOG_LEVEL}")
     logging.info("")
 
+def print_dest_dir_contents():
+    # Print contents of destination directory
+    logging.info("Contents of destination directory:")
+    for root, dirs, files in os.walk(DEST_DOWNLOAD_DIR):
+        for file in files:
+            logging.info(os.path.join(root, file))
 
 if __name__ == "__main__":
     # Ensure the destination directory exists
@@ -46,7 +51,12 @@ if __name__ == "__main__":
     attempt_count = 1
 
     while True:
-        logging.info("Attempt %d: Downloading file from URL: %s", attempt_count, SRC_FILE_TO_DOWNLOAD_URL)
+        logging.info("")
+        logging.info("Attempt %d", attempt_count)
+        logging.info("")
+        print_dest_dir_contents()  # Print contents of destination directory before next attempt
+
+        logging.info("Downloading file from URL: %s", SRC_FILE_TO_DOWNLOAD_URL)
         download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR, "file.txt"))
         
         logging.info("Attempt %d: Waiting for %d seconds before next download attempt...", attempt_count, SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  downloader:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - LOG_LEVEL=INFO
+      - SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS=300
+      - SRC_FILE_TO_DOWNLOAD_URL=https://example.com/file.txt
+      - DEST_DOWNLOAD_DIR=/data
+    volumes:
+      - ./data:/data
