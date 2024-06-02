@@ -16,4 +16,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Run the script
-CMD [ "python", "./script.py" ]
+CMD [ "python", "./download-file.py" ]
