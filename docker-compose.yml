@@ -9,7 +9,7 @@ services:
     environment:
       - LOG_LEVEL=DEBUG
       - SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS=5
-      - SRC_FILE_TO_DOWNLOAD_URL=https://raw.githubusercontent.com/Davis8988/birthday-dashboard/main/data/birthdays.csv
+      - SRC_FILE_TO_DOWNLOAD_URL=https://raw.githu1busercontent.com/Davis8988/birthday-dashboard/main/data/birthdays.csv
       - DEST_DOWNLOAD_DIR=/data
     volumes:
       - ./data:/data
