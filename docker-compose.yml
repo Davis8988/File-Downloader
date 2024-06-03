@@ -2,6 +2,7 @@ version: '3'
 
 services:
   file-downloader:
+    image: davis8988/file-downloader:1.0.0
     build:
       context: .
       dockerfile: Dockerfile
