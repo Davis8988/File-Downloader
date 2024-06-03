@@ -87,7 +87,7 @@ if __name__ == "__main__":
     while True:
         try:
             logging.info("")
-            logging.info("Attempt %d", attempt_count)
+            logging.info(" ==> Attempt %d", attempt_count)
             logging.info("")
             if not check_internet_connection():
                 logging.warning("Attempt %d: No internet connection available. Skipping download attempt.", attempt_count)
