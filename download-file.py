@@ -27,7 +27,7 @@ def check_internet_connection():
     return False
 
 def download_file(url, local_path):
-    logging.info(f"Downloading {url} to: {local_path}")
+    logging.info(f"Downloading file: '{url}' to: {local_path}")
     logging.info("Downloading...")
     with open(local_path, 'wb') as f:
         response = requests.get(url)
