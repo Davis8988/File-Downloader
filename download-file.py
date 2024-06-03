@@ -5,7 +5,7 @@ import logging
 import sys
 
 # Configuration variables
-SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS = int(os.getenv("SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS", "3600"))  # Default: 60 minutes
+SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS = int(os.getenv("SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS", "10"))  # Default: 10 seconds
 SRC_FILE_TO_DOWNLOAD_URL             = os.getenv("SRC_FILE_TO_DOWNLOAD_URL", "https://example.com/file.txt")
 DEST_DOWNLOAD_DIR                    = os.getenv("DEST_DOWNLOAD_DIR", "/data")
 LOG_LEVEL                            = getattr(logging, os.getenv("LOG_LEVEL", "INFO").upper())
