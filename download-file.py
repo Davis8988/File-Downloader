@@ -47,14 +47,14 @@ def print_vars():
     logging.info("Configuration Variables:")
     logging.info(f"  SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS : {SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS}")
     logging.info(f"  SRC_FILE_TO_DOWNLOAD_URL             : {SRC_FILE_TO_DOWNLOAD_URL}")
-    logging.info(f"  DEST_DOWNLOAD_DIR                    : {DEST_DOWNLOAD_DIR}")
+    logging.info(f"  DEST_DOWNLOAD_DIR_PATH               : {DEST_DOWNLOAD_DIR_PATH}")
     logging.info(f"  LOG_LEVEL                            : {LOG_LEVEL}")
     logging.info("")
 
 def print_dest_dir_contents():
     # Print contents of destination directory
-    logging.info(f"Contents of destination directory: {DEST_DOWNLOAD_DIR}")
-    for root, dirs, files in os.walk(DEST_DOWNLOAD_DIR):
+    logging.info(f"Contents of destination directory: {DEST_DOWNLOAD_DIR_PATH}")
+    for root, dirs, files in os.walk(DEST_DOWNLOAD_DIR_PATH):
         for file in files:
             logging.info(f" - {os.path.join(root, file)}")
     logging.info("")
@@ -62,7 +62,7 @@ def print_dest_dir_contents():
 
 def print_dest_file_content(filename):
     # Print content of specified file in destination directory
-    file_path = os.path.join(DEST_DOWNLOAD_DIR, filename)
+    file_path = os.path.join(DEST_DOWNLOAD_DIR_PATH, filename)
     logging.info(f"Content of file {filename}:")
     if os.path.exists(file_path):
         with open(file_path, 'r') as f:
@@ -74,8 +74,8 @@ def print_dest_file_content(filename):
 
 if __name__ == "__main__":
     # Ensure the destination directory exists
-    if not os.path.exists(DEST_DOWNLOAD_DIR):
-        os.makedirs(DEST_DOWNLOAD_DIR)
+    if not os.path.exists(DEST_DOWNLOAD_DIR_PATH):
+        os.makedirs(DEST_DOWNLOAD_DIR_PATH)
 
     logging.info("Starting download script...")
     print_vars()
@@ -95,7 +95,7 @@ if __name__ == "__main__":
                 print_dest_dir_contents()  # Print contents of destination directory before next attempt
 
                 logging.info("Downloading file from URL: %s", SRC_FILE_TO_DOWNLOAD_URL)
-                download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR, DEST_DOWNLOAD_FILE_NAME))
+                download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR_PATH, DEST_DOWNLOAD_FILE_NAME))
                 
                 print_dest_file_content(DEST_DOWNLOAD_FILE_NAME)  # Print content of file "{DEST_DOWNLOAD_FILE_NAME}" before next attempt
             logging.info("Waiting for %d seconds before next download attempt...", SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
