@@ -28,11 +28,15 @@ def check_internet_connection():
 
 def download_file(url, local_path):
     logging.info(f"Downloading file: '{url}' to: {local_path}")
-    logging.info("Downloading...")
-    with open(local_path, 'wb') as f:
-        response = requests.get(url)
-        f.write(response.content)
-    logging.info("OK - Download complete.")
+    try:
+        logging.info("Downloading...")
+        with open(local_path, 'wb') as f:
+            response = requests.get(url)
+            f.write(response.content)
+        logging.info("OK - Download complete.")
+    except Exception as e:
+        logging.error(f"Error occurred during download: {e}")
+        logging.error("Download failed.")
 
 def print_vars():
     # Print defined variables
