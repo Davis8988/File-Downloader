@@ -15,6 +15,8 @@ logging.basicConfig(stream=sys.stdout, level=LOG_LEVEL, format='%(asctime)s - %(
 
 def check_internet_connection():
     try:
+
+        logging.info(f"Checking if URL adderss is available: {SRC_FILE_TO_DOWNLOAD_URL}")
         response = requests.head(SRC_FILE_TO_DOWNLOAD_URL, timeout=7)
         if response.status_code == 200:
             logging.info("OK - Internet connection is available.")
