@@ -90,6 +90,7 @@ if __name__ == "__main__":
             logging.info(" ==> Attempt %d", attempt_count)
             logging.info("")
             print_dest_dir_contents()  # <-- Print contents of destination directory before next attempt
+            print_dest_file_content(DEST_DOWNLOAD_FILE_NAME)  # Print content of file "{DEST_DOWNLOAD_FILE_NAME}" before next attempt
             if not check_internet_connection():
                 logging.warning("Attempt %d: No internet connection available. Skipping download attempt.", attempt_count)
             else:
@@ -98,7 +99,6 @@ if __name__ == "__main__":
                 logging.info("Downloading file from URL: %s", SRC_FILE_TO_DOWNLOAD_URL)
                 download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR_PATH, DEST_DOWNLOAD_FILE_NAME))
                 
-                print_dest_file_content(DEST_DOWNLOAD_FILE_NAME)  # Print content of file "{DEST_DOWNLOAD_FILE_NAME}" before next attempt
             logging.info("Waiting for %d seconds before next download attempt...", SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
             time.sleep(SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
 
