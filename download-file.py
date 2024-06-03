@@ -27,14 +27,12 @@ def check_internet_connection():
     return False
 
 def download_file(url, local_path):
-    logging.info("Checking for updates...")
-    response = requests.head(url)
-    if response.status_code == 200:
-        logging.info("File is updated. Downloading...")
-        with open(local_path, 'wb') as f:
-            response = requests.get(url)
-            f.write(response.content)
-        logging.info("Download complete.")
+    logging.info(f"Downloading {url} to: {local_path}")
+    logging.info("Downloading...")
+    with open(local_path, 'wb') as f:
+        response = requests.get(url)
+        f.write(response.content)
+    logging.info("Download complete.")
 
 def print_vars():
     # Print defined variables
