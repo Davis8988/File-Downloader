@@ -32,7 +32,7 @@ def download_file(url, local_path):
     with open(local_path, 'wb') as f:
         response = requests.get(url)
         f.write(response.content)
-    logging.info("Download complete.")
+    logging.info("OK - Download complete.")
 
 def print_vars():
     # Print defined variables
