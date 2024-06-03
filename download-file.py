@@ -94,7 +94,7 @@ if __name__ == "__main__":
             else:
                 logging.info("OK - Internet connection available. Proceeding with download...", attempt_count)
                 
-                print_dest_dir_contents()  # Print contents of destination directory before next attempt
+                print_dest_dir_contents()  # <-- Print contents of destination directory before next attempt
 
                 logging.info("Downloading file from URL: %s", SRC_FILE_TO_DOWNLOAD_URL)
                 download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR_PATH, DEST_DOWNLOAD_FILE_NAME))
