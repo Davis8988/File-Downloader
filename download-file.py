@@ -62,16 +62,16 @@ def print_dest_dir_contents():
     logging.info("")
 
 
-def print_dest_file_content(filename):
+def print_dest_file_content():
     # Print content of specified file in destination directory
-    file_path = os.path.join(DEST_DOWNLOAD_DIR_PATH, filename)
-    logging.info(f"Content of file {filename}:")
+    file_path = os.path.join(DEST_DOWNLOAD_DIR_PATH, DEST_DOWNLOAD_FILE_NAME)
+    logging.info(f"Content of file {DEST_DOWNLOAD_FILE_NAME}:")
     if os.path.exists(file_path):
         with open(file_path, 'r') as f:
             for line in f:
                 logging.info(line.strip())
     else:
-        logging.warning(f"File {filename} does not exist in the destination directory.")
+        logging.warning(f"File {DEST_DOWNLOAD_FILE_NAME} does not exist in the destination directory.")
 
 
 if __name__ == "__main__":
@@ -90,7 +90,7 @@ if __name__ == "__main__":
             logging.info(" ==> Attempt %d", attempt_count)
             logging.info("")
             print_dest_dir_contents()  # <-- Print contents of destination directory before next attempt
-            print_dest_file_content(DEST_DOWNLOAD_FILE_NAME)  # Print content of file "{DEST_DOWNLOAD_FILE_NAME}" before next attempt
+            print_dest_file_content()  # Print content of file "{DEST_DOWNLOAD_FILE_NAME}" before next attempt
             if not check_internet_connection():
                 logging.warning("Attempt %d: No internet connection available. Skipping download attempt.", attempt_count)
             else:
