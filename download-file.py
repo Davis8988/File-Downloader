@@ -19,7 +19,7 @@ def check_internet_connection():
         logging.info(f"Checking if URL adderss is available: {SRC_FILE_TO_DOWNLOAD_URL}")
         response = requests.head(SRC_FILE_TO_DOWNLOAD_URL, timeout=7)
         if response.status_code == 200:
-            logging.info("OK - Internet connection is available.")
+            logging.info("OK - Address is available.")
             return True
     except requests.ConnectionError as err_msg:
         logging.error(err_msg)
