@@ -15,12 +15,13 @@ logging.basicConfig(stream=sys.stdout, level=LOG_LEVEL, format='%(asctime)s - %(
 
 def check_internet_connection():
     try:
-        requests.get("http://example.com", timeout=5)
-        logging.info("Internet connection is available.")
-        return True
+        response = requests.head(SRC_FILE_TO_DOWNLOAD_URL, timeout=7)
+        if response.status_code == 200:
+            logging.info("Internet connection is available.")
+            return True
     except requests.ConnectionError:
         logging.warning("No internet connection available.")
-        return False
+    return False
 
 def download_file(url, local_path):
     logging.info("Checking for updates...")
