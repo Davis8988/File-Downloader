@@ -67,6 +67,7 @@ def print_dest_file_content():
     file_path = os.path.join(DEST_DOWNLOAD_DIR_PATH, DEST_DOWNLOAD_FILE_NAME)
     logging.info(f"Attempting to read the content of file: {DEST_DOWNLOAD_FILE_NAME}:")
     if os.path.exists(file_path):
+        logging.info(f"Content:")
         with open(file_path, 'r') as f:
             for line in f:
                 logging.info(line.strip())
