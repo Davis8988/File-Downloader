@@ -13,6 +13,15 @@ LOG_LEVEL                            = getattr(logging, os.getenv("LOG_LEVEL", "
 # Set up logging
 logging.basicConfig(stream=sys.stdout, level=LOG_LEVEL, format='%(asctime)s - %(levelname)s - %(message)s')
 
+def check_internet_connection():
+    try:
+        requests.get("http://example.com", timeout=5)
+        logging.info("Internet connection is available.")
+        return True
+    except requests.ConnectionError:
+        logging.warning("No internet connection available.")
+        return False
+
 def download_file(url, local_path):
     logging.info("Checking for updates...")
     response = requests.head(url)
@@ -68,6 +77,14 @@ if __name__ == "__main__":
         logging.info("")
         logging.info("Attempt %d", attempt_count)
         logging.info("")
+        if not check_internet_connection():
+            logging.warning("Attempt %d: No internet connection available. Skipping download attempt.", attempt_count)
+            pass
+        logging.info("OK - Internet connection available. Proceeding with download...", attempt_count)
+        logging.info("Attempt %d: Downloading file from URL: %s", attempt_count, SRC_FILE_TO_DOWNLOAD_URL)
+        download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR, "file.txt"))
+            
+        
         print_dest_dir_contents()  # Print contents of destination directory before next attempt
 
         logging.info("Downloading file from URL: %s", SRC_FILE_TO_DOWNLOAD_URL)
