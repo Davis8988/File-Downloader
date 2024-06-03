@@ -6,6 +6,7 @@ import sys
 
 # Configuration variables
 SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS = int(os.getenv("SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS", "10"))  # Default: 10 seconds
+CHECK_INTERNET_CONNECTION_TIMEOUT    = int(os.getenv("SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS", "9"))  # Default: 9 seconds
 SRC_FILE_TO_DOWNLOAD_URL             = os.getenv("SRC_FILE_TO_DOWNLOAD_URL", "https://example.com/file.txt")
 DEST_DOWNLOAD_DIR                    = os.getenv("DEST_DOWNLOAD_DIR", "/data")
 LOG_LEVEL                            = getattr(logging, os.getenv("LOG_LEVEL", "INFO").upper())
@@ -15,9 +16,9 @@ logging.basicConfig(stream=sys.stdout, level=LOG_LEVEL, format='%(asctime)s - %(
 
 def check_internet_connection():
     try:
-
         logging.info(f"Checking if URL adderss is available: {SRC_FILE_TO_DOWNLOAD_URL}")
-        response = requests.head(SRC_FILE_TO_DOWNLOAD_URL, timeout=7)
+        logging.info(f"set timeout to: {CHECK_INTERNET_CONNECTION_TIMEOUT} sec")
+        response = requests.head(SRC_FILE_TO_DOWNLOAD_URL, timeout=CHECK_INTERNET_CONNECTION_TIMEOUT)
         if response.status_code == 200:
             logging.info("OK - Address is available.")
             return True
