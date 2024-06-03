@@ -8,7 +8,8 @@ import sys
 SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS = int(os.getenv("SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS", "10"))  # Default: 10 seconds
 CHECK_INTERNET_CONNECTION_TIMEOUT    = int(os.getenv("SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS", "9"))  # Default: 9 seconds
 SRC_FILE_TO_DOWNLOAD_URL             = os.getenv("SRC_FILE_TO_DOWNLOAD_URL", "https://example.com/file.txt")
-DEST_DOWNLOAD_DIR                    = os.getenv("DEST_DOWNLOAD_DIR", "/data")
+DEST_DOWNLOAD_DIR_PATH               = os.getenv("DEST_DOWNLOAD_DIR_PATH", "/data")
+DEST_DOWNLOAD_FILE_NAME              = os.getenv("DEST_DOWNLOAD_FILE_NAME", "birthdays.csv")
 LOG_LEVEL                            = getattr(logging, os.getenv("LOG_LEVEL", "INFO").upper())
 
 # Set up logging
