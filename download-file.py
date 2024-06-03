@@ -31,7 +31,7 @@ def download_file(url, local_path):
     logging.info(f"Downloading file: '{url}' to: {local_path}")
     try:
         logging.info(f"set timeout to: {CHECK_INTERNET_CONNECTION_TIMEOUT} sec")
-        logging.info("Downloading...")
+        logging.info("Downloading now...")
         with open(local_path, 'wb') as f:
             response = requests.get(url, timeout=CHECK_INTERNET_CONNECTION_TIMEOUT)
             f.write(response.content)
