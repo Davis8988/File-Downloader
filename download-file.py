@@ -95,7 +95,7 @@ if __name__ == "__main__":
                 download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR, "file.txt"))
                 
                 print_dest_file_content("file.txt")  # Print content of file "file.txt" before next attempt
-            logging.info("Attempt %d: Waiting for %d seconds before next download attempt...", attempt_count, SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
+            logging.info("Waiting for %d seconds before next download attempt...", SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
             time.sleep(SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
 
             attempt_count += 1
