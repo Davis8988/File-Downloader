@@ -92,7 +92,7 @@ if __name__ == "__main__":
             if not check_internet_connection():
                 logging.warning("Attempt %d: No internet connection available. Skipping download attempt.", attempt_count)
             else:
-                logging.info("OK - Internet connection available. Proceeding with download...", attempt_count)
+                logging.info("OK - Internet connection available. Proceeding with download...")
                 
                 print_dest_dir_contents()  # <-- Print contents of destination directory before next attempt
 
