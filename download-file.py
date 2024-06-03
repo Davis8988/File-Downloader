@@ -20,7 +20,7 @@ def check_internet_connection():
             logging.info("OK - Internet connection is available.")
             return True
     except requests.ConnectionError as err_msg:
-        logging.warning(err_msg)
+        logging.error(err_msg)
     logging.warning("No internet connection available.")
     return False
 
