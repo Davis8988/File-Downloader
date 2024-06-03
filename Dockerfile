@@ -13,7 +13,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy the current directory contents into the container at /usr/src/app
-COPY . .
+COPY download-file.py .
 
 # Run the script
 CMD [ "python", "./download-file.py" ]
