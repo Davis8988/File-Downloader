@@ -13,7 +13,7 @@ DEST_DOWNLOAD_FILE_NAME              = os.getenv("DEST_DOWNLOAD_FILE_NAME", "bir
 LOG_LEVEL                            = getattr(logging, os.getenv("LOG_LEVEL", "INFO").upper())
 
 # Set up logging
-logging.basicConfig(stream=sys.stdout, level=LOG_LEVEL, format='%(asctime)s - %(levelname)s : %(message)s')
+logging.basicConfig(stream=sys.stdout, level=LOG_LEVEL, format='%(asctime)s - %(levelname)s: %(message)s')
 
 def check_internet_connection():
     try:
