@@ -95,9 +95,9 @@ if __name__ == "__main__":
                 print_dest_dir_contents()  # Print contents of destination directory before next attempt
 
                 logging.info("Downloading file from URL: %s", SRC_FILE_TO_DOWNLOAD_URL)
-                download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR, "file.txt"))
+                download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR, DEST_DOWNLOAD_FILE_NAME))
                 
-                print_dest_file_content("file.txt")  # Print content of file "file.txt" before next attempt
+                print_dest_file_content(DEST_DOWNLOAD_FILE_NAME)  # Print content of file "{DEST_DOWNLOAD_FILE_NAME}" before next attempt
             logging.info("Waiting for %d seconds before next download attempt...", SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
             time.sleep(SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
 
