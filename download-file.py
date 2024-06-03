@@ -19,8 +19,9 @@ def check_internet_connection():
         if response.status_code == 200:
             logging.info("Internet connection is available.")
             return True
-    except requests.ConnectionError:
-        logging.warning("No internet connection available.")
+    except requests.ConnectionError as err_msg:
+        logging.warning(err_msg)
+    logging.warning("No internet connection available.")
     return False
 
 def download_file(url, local_path):
