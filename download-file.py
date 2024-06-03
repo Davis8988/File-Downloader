@@ -55,7 +55,7 @@ def print_dest_dir_contents():
     logging.info(f"Contents of destination directory: {DEST_DOWNLOAD_DIR}")
     for root, dirs, files in os.walk(DEST_DOWNLOAD_DIR):
         for file in files:
-            logging.info(os.path.join(root, file))
+            logging.info(f" - {os.path.join(root, file)}")
     logging.info("")
 
 
