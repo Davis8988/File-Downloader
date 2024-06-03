@@ -81,9 +81,6 @@ if __name__ == "__main__":
             logging.warning("Attempt %d: No internet connection available. Skipping download attempt.", attempt_count)
             pass
         logging.info("OK - Internet connection available. Proceeding with download...", attempt_count)
-        logging.info("Attempt %d: Downloading file from URL: %s", attempt_count, SRC_FILE_TO_DOWNLOAD_URL)
-        download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR, "file.txt"))
-            
         
         print_dest_dir_contents()  # Print contents of destination directory before next attempt
 
