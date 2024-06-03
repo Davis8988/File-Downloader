@@ -80,21 +80,25 @@ if __name__ == "__main__":
     attempt_count = 1
 
     while True:
-        logging.info("")
-        logging.info("Attempt %d", attempt_count)
-        logging.info("")
-        if not check_internet_connection():
-            logging.warning("Attempt %d: No internet connection available. Skipping download attempt.", attempt_count)
-            pass
-        logging.info("OK - Internet connection available. Proceeding with download...", attempt_count)
-        
-        print_dest_dir_contents()  # Print contents of destination directory before next attempt
+        try:
+            logging.info("")
+            logging.info("Attempt %d", attempt_count)
+            logging.info("")
+            if not check_internet_connection():
+                logging.warning("Attempt %d: No internet connection available. Skipping download attempt.", attempt_count)
+                pass
+            logging.info("OK - Internet connection available. Proceeding with download...", attempt_count)
+            
+            print_dest_dir_contents()  # Print contents of destination directory before next attempt
 
-        logging.info("Downloading file from URL: %s", SRC_FILE_TO_DOWNLOAD_URL)
-        download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR, "file.txt"))
-        
-        print_dest_file_content("file.txt")  # Print content of file "file.txt" before next attempt
-        logging.info("Attempt %d: Waiting for %d seconds before next download attempt...", attempt_count, SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
-        time.sleep(SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
+            logging.info("Downloading file from URL: %s", SRC_FILE_TO_DOWNLOAD_URL)
+            download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR, "file.txt"))
+            
+            print_dest_file_content("file.txt")  # Print content of file "file.txt" before next attempt
+            logging.info("Attempt %d: Waiting for %d seconds before next download attempt...", attempt_count, SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
+            time.sleep(SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
 
-        attempt_count += 1
+            attempt_count += 1
+        except Exception as e:
+            logging.error(f"Error occurred during download attempt: {e}")
+            logging.error("Skipping this download attempt.")
