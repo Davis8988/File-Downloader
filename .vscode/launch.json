@@ -9,7 +9,7 @@
             "console": "integratedTerminal",
             "env": {
                 "SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS": "300",
-                "SRC_FILE_TO_DOWNLOAD_URL": "https://example.com/file.txt",
+                "SRC_FILE_TO_DOWNLOAD_URL": "http://192.168.1.120:3000/root/birthday-dashboard/raw/branch/david/add-update-from-internet-side-container/data/birthdays.csv",
                 "DEST_DOWNLOAD_DIR": "/data",
                 "LOG_LEVEL": "DEBUG"
             }
