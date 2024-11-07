@@ -6,7 +6,7 @@ import sys
 
 # Configuration variables
 SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS = int(os.getenv("SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS", "10"))  # Default: 10 seconds
-CHECK_INTERNET_CONNECTION_TIMEOUT    = int(os.getenv("SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS", "9"))  # Default: 9 seconds
+REQUESTS_TIMEOUT_SEC                 = int(os.getenv("REQUESTS_TIMEOUT_SEC", "9"))  # Default: 9 seconds
 READ_CONTENT_TIMEOUT_SEC             = int(os.getenv("READ_CONTENT_TIMEOUT_SEC", "30"))  # Default: 30 seconds
 SRC_FILE_TO_DOWNLOAD_URL             = os.getenv("SRC_FILE_TO_DOWNLOAD_URL", "https://raw.githubusercontent.com/Davis8988/birthday-dashboard/main/data/birthdays.csv")
 DEST_DOWNLOAD_DIR_PATH               = os.getenv("DEST_DOWNLOAD_DIR_PATH", "/data")
@@ -19,8 +19,8 @@ logging.basicConfig(stream=sys.stdout, level=LOG_LEVEL, format='%(asctime)s - %(
 # def check_internet_connection():
 #     try:
 #         logging.info(f"Checking if URL adderss is available: {SRC_FILE_TO_DOWNLOAD_URL}")
-#         logging.info(f"set timeout to: {CHECK_INTERNET_CONNECTION_TIMEOUT} sec")
-#         response = requests.head(SRC_FILE_TO_DOWNLOAD_URL, timeout=CHECK_INTERNET_CONNECTION_TIMEOUT)
+#         logging.info(f"set timeout to: {REQUESTS_TIMEOUT_SEC} sec")
+#         response = requests.head(SRC_FILE_TO_DOWNLOAD_URL, timeout=REQUESTS_TIMEOUT_SEC)
 #         if response.status_code == 200:
 #             logging.info("OK - Address is available.")
 #             return True
@@ -32,10 +32,10 @@ logging.basicConfig(stream=sys.stdout, level=LOG_LEVEL, format='%(asctime)s - %(
 def download_file(url, local_path):
     logging.info(f"Downloading file: '{url}' to: {local_path}")
     try:
-        logging.info(f"set timeout to: {CHECK_INTERNET_CONNECTION_TIMEOUT} sec")
+        logging.info(f"set timeout to: {REQUESTS_TIMEOUT_SEC} sec")
         logging.info("Downloading now...")
         with open(local_path, 'wb') as f:
-            response = requests.get(url, timeout=(CHECK_INTERNET_CONNECTION_TIMEOUT, READ_CONTENT_TIMEOUT_SEC), allow_redirects=True)
+            response = requests.get(url, timeout=(REQUESTS_TIMEOUT_SEC, READ_CONTENT_TIMEOUT_SEC), allow_redirects=True)
             f.write(response.content)
         logging.info("OK - Download complete.")
     except Exception as e:
@@ -47,7 +47,7 @@ def print_vars():
     logging.info("")
     logging.info("Configuration Variables:")
     logging.info(f"  SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS : {SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS}")
-    logging.info(f"  CHECK_INTERNET_CONNECTION_TIMEOUT    : {CHECK_INTERNET_CONNECTION_TIMEOUT}")
+    logging.info(f"  REQUESTS_TIMEOUT_SEC    : {REQUESTS_TIMEOUT_SEC}")
     logging.info(f"  SRC_FILE_TO_DOWNLOAD_URL             : {SRC_FILE_TO_DOWNLOAD_URL}")
     logging.info(f"  DEST_DOWNLOAD_DIR_PATH               : {DEST_DOWNLOAD_DIR_PATH}")
     logging.info(f"  DEST_DOWNLOAD_FILE_NAME              : {DEST_DOWNLOAD_FILE_NAME}")
