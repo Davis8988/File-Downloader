@@ -15,18 +15,18 @@ LOG_LEVEL                            = getattr(logging, os.getenv("LOG_LEVEL", "
 # Set up logging
 logging.basicConfig(stream=sys.stdout, level=LOG_LEVEL, format='%(asctime)s - %(levelname)s: %(message)s')
 
-def check_internet_connection():
-    try:
-        logging.info(f"Checking if URL adderss is available: {SRC_FILE_TO_DOWNLOAD_URL}")
-        logging.info(f"set timeout to: {CHECK_INTERNET_CONNECTION_TIMEOUT} sec")
-        response = requests.head(SRC_FILE_TO_DOWNLOAD_URL, timeout=CHECK_INTERNET_CONNECTION_TIMEOUT)
-        if response.status_code == 200:
-            logging.info("OK - Address is available.")
-            return True
-    except requests.ConnectionError as err_msg:
-        logging.error(err_msg)
-    logging.warning("No internet connection available.")
-    return False
+# def check_internet_connection():
+#     try:
+#         logging.info(f"Checking if URL adderss is available: {SRC_FILE_TO_DOWNLOAD_URL}")
+#         logging.info(f"set timeout to: {CHECK_INTERNET_CONNECTION_TIMEOUT} sec")
+#         response = requests.head(SRC_FILE_TO_DOWNLOAD_URL, timeout=CHECK_INTERNET_CONNECTION_TIMEOUT)
+#         if response.status_code == 200:
+#             logging.info("OK - Address is available.")
+#             return True
+#     except requests.ConnectionError as err_msg:
+#         logging.error(err_msg)
+#     logging.warning("No internet connection available.")
+#     return False
 
 def download_file(url, local_path):
     logging.info(f"Downloading file: '{url}' to: {local_path}")
@@ -91,15 +91,14 @@ if __name__ == "__main__":
             logging.info(" ==> Attempt %d", attempt_count)
             logging.info("")
             print_dest_dir_contents()  # <-- Print contents of destination directory before next attempt
-            print_dest_file_content()  # Print content of file "{DEST_DOWNLOAD_FILE_NAME}" before next attempt
-            if not check_internet_connection():
-                logging.warning("Attempt %d: No internet connection available. Skipping download attempt.", attempt_count)
-            else:
-                logging.info("OK - Internet connection available. Proceeding with download...")
+            # if not check_internet_connection():
+            #     logging.warning("Attempt %d: No internet connection available. Skipping download attempt.", attempt_count)
+            # else:
+            #     logging.info("OK - Internet connection available. Proceeding with download...")
 
-                logging.info("Downloading file from URL: %s", SRC_FILE_TO_DOWNLOAD_URL)
-                download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR_PATH, DEST_DOWNLOAD_FILE_NAME))
-                print_dest_dir_contents()
+            logging.info("Downloading file from URL: %s", SRC_FILE_TO_DOWNLOAD_URL)
+            download_file(SRC_FILE_TO_DOWNLOAD_URL, os.path.join(DEST_DOWNLOAD_DIR_PATH, DEST_DOWNLOAD_FILE_NAME))
+            print_dest_dir_contents()
                 
             logging.info("Waiting for %d seconds before next download attempt...", SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
             time.sleep(SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS)
