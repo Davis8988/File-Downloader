@@ -47,7 +47,7 @@ def print_vars():
     logging.info("")
     logging.info("Configuration Variables:")
     logging.info(f"  SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS : {SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS}")
-    logging.info(f"  REQUESTS_TIMEOUT_SEC    : {REQUESTS_TIMEOUT_SEC}")
+    logging.info(f"  REQUESTS_TIMEOUT_SEC                 : {REQUESTS_TIMEOUT_SEC}")
     logging.info(f"  SRC_FILE_TO_DOWNLOAD_URL             : {SRC_FILE_TO_DOWNLOAD_URL}")
     logging.info(f"  DEST_DOWNLOAD_DIR_PATH               : {DEST_DOWNLOAD_DIR_PATH}")
     logging.info(f"  DEST_DOWNLOAD_FILE_NAME              : {DEST_DOWNLOAD_FILE_NAME}")
