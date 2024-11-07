@@ -34,7 +34,7 @@ def download_file(url, local_path):
         logging.info(f"set timeout to: {CHECK_INTERNET_CONNECTION_TIMEOUT} sec")
         logging.info("Downloading now...")
         with open(local_path, 'wb') as f:
-            response = requests.get(url, timeout=CHECK_INTERNET_CONNECTION_TIMEOUT)
+            response = requests.get(url, timeout=CHECK_INTERNET_CONNECTION_TIMEOUT, allow_redirects=True)
             f.write(response.content)
         logging.info("OK - Download complete.")
     except Exception as e:
