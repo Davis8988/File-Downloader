@@ -8,7 +8,7 @@ import sys
 SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS = int(os.getenv("SLEEP_BETWEEN_DOWNLOAD_TRIES_SECONDS", "10"))  # Default: 10 seconds
 REQUESTS_TIMEOUT_SEC                 = int(os.getenv("REQUESTS_TIMEOUT_SEC", "9"))  # Default: 9 seconds
 READ_CONTENT_TIMEOUT_SEC             = int(os.getenv("READ_CONTENT_TIMEOUT_SEC", "30"))  # Default: 30 seconds
-SRC_FILE_TO_DOWNLOAD_URL             = os.getenv("SRC_FILE_TO_DOWNLOAD_URL", "https://raw.githubusercontent.com/Davis8988/birthday-dashboard/main/data/birthdays.csv")
+SRC_FILE_TO_DOWNLOAD_URL             = os.getenv("SRC_FILE_TO_DOWNLOAD_URL", "https://drive.google.com/uc?id=1NMct4riX9-Ip689GzVPl3ILm3ylABoX4")  # Link to: https://drive.google.com/file/d/1NMct4riX9-Ip689GzVPl3ILm3ylABoX4/view?usp=drive_link
 DEST_DOWNLOAD_DIR_PATH               = os.getenv("DEST_DOWNLOAD_DIR_PATH", "/data")
 DEST_DOWNLOAD_FILE_NAME              = os.getenv("DEST_DOWNLOAD_FILE_NAME", "birthdays.csv")
 LOG_LEVEL                            = getattr(logging, os.getenv("LOG_LEVEL", "INFO").upper())
