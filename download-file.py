@@ -29,18 +29,50 @@ logging.basicConfig(stream=sys.stdout, level=LOG_LEVEL, format='%(asctime)s - %(
 #     logging.warning("No internet connection available.")
 #     return False
 
+import logging
+import os
+import requests
+
+REQUESTS_TIMEOUT_SEC = 10  # Example timeout, replace with actual value
+READ_CONTENT_TIMEOUT_SEC = 5  # Example timeout, replace with actual value
+
 def download_file(url, local_path):
     logging.info(f"Downloading file: '{url}' to: {local_path}")
     try:
-        logging.info(f"set timeout to: {REQUESTS_TIMEOUT_SEC} sec")
-        logging.info("Downloading now...")
+        logging.info(f"Set timeout to: {REQUESTS_TIMEOUT_SEC} sec")
+        logging.info(f"Reading content from: {url}")
+        
+        # Download the new content
+        response = requests.get(url, timeout=(REQUESTS_TIMEOUT_SEC, READ_CONTENT_TIMEOUT_SEC), allow_redirects=True)
+        new_content = response.content
+        logging.info(f"OK got new content")
+        # Check if the file exists
+        logging.info(f"Checking if file already exists: {local_path}")
+        if os.path.exists(local_path):
+            logging.info(" Yes")
+            logging.info(" Reading existing file to compare it's content")
+            # Read the existing file's content
+            with open(local_path, 'rb') as f:
+                existing_content = f.read()
+
+            logging.info(" Got existing the file content")
+            # Compare the existing content to the new content
+            logging.info(" Comparing now..")
+            if existing_content == new_content:
+                logging.info("The file already exists and the content is the same. No need to overwrite.")
+                return
+            logging.info(" Content is new !")
+            logging.info(" Continuing to write..")
+
+        # Write the new content if the file doesn't exist or if the content is different
         with open(local_path, 'wb') as f:
-            response = requests.get(url, timeout=(REQUESTS_TIMEOUT_SEC, READ_CONTENT_TIMEOUT_SEC), allow_redirects=True)
-            f.write(response.content)
-        logging.info("OK - Download complete.")
+            f.write(new_content)
+            logging.info("OK - File written successfully.")
+
     except Exception as e:
         logging.error(f"Error occurred during download: {e}")
         logging.error("Download failed.")
+
 
 def print_vars():
     # Print defined variables
